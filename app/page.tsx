@@ -3,12 +3,35 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
+// Define the type for particle positions to use in state
+type ParticlePosition = {
+  x: number;
+  y: number;
+  delay: number;
+  randomXOffset: number;
+};
+
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
+  // 1. State to hold particle positions, initialized as an empty array
+  const [particlePositions, setParticlePositions] = useState<ParticlePosition[]>([]);
 
   useEffect(() => {
     setIsVisible(true);
-  }, []);
+
+    // 2. Client-side logic to calculate particle positions using 'window'
+    if (typeof window !== 'undefined') {
+      const NUM_PARTICLES = 20;
+      const positions: ParticlePosition[] = [...Array(NUM_PARTICLES)].map(() => ({
+        // Use window properties safely inside useEffect
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        delay: Math.random() * 2,
+        randomXOffset: Math.random() * 50 - 25, // Pre-calculate for animation
+      }));
+      setParticlePositions(positions);
+    }
+  }, []); // Empty dependency array ensures this runs once on client mount
 
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
@@ -18,23 +41,24 @@ export default function HomePage() {
       
       {/* Floating Particles */}
       <div className="fixed inset-0 overflow-hidden z-0">
-        {[...Array(20)].map((_, i) => (
+        {/* 3. Map over the particlePositions state */}
+        {particlePositions.map((pos, i) => (
           <motion.div
             key={i}
             className="absolute w-[1px] h-[1px] bg-blue-500/30 rounded-full"
             initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: pos.x, // Now safe: accessing data from state
+              y: pos.y, // Now safe: accessing data from state
             }}
             animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 50 - 25, 0],
+              y: [pos.y, pos.y - 100, pos.y],
+              x: [pos.x, pos.x + pos.randomXOffset, pos.x], // Use the pre-calculated offset
               opacity: [0, 1, 0],
             }}
             transition={{
               duration: Math.random() * 3 + 2,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: pos.delay,
             }}
           />
         ))}
@@ -280,6 +304,7 @@ export default function HomePage() {
   );
 }
 
+// Data array moved outside the component for better performance
 const features = [
   {
     title: "Real-time Facial Recognition",
