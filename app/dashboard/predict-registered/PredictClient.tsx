@@ -82,22 +82,7 @@ export default function PredictClient({ events }: { events: any[] }) {
                     Predict
                   </button>
                 </td>
-                <td className="px-4 py-2">
-                  {predictionResult?.registrationId === r._id ? (
-                    <span
-                      className={`font-semibold ${
-                        predictionResult.will_attend
-                          ? "text-green-600"
-                          : "text-red-600"
-                      }`}
-                    >
-                      {predictionResult.will_attend ? "Will Attend" : "Won’t Attend"} (
-                      {(predictionResult.probability * 100).toFixed(1)}%)
-                    </span>
-                  ) : (
-                    "-"
-                  )}
-                </td>
+                
               </tr>
             ))}
           </tbody>
@@ -108,3 +93,5 @@ export default function PredictClient({ events }: { events: any[] }) {
     </div>
   );
 }
+
+
