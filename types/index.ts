@@ -147,6 +147,7 @@ export interface EventData {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  
 }
 
 // -------------------------------------

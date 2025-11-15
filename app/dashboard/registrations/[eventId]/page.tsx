@@ -11,48 +11,48 @@ export default async function EventRegistrationsPage({ params }: PageProps) {
   await connectDB();
 
   const eventDoc: any = await Event.findById(eventId).lean();
-  if (!eventDoc) return <p>Event not found.</p>;
+  if (!eventDoc) return <p className="text-black">Event not found.</p>;
 
   const registrations = await Registration.find({ eventId }).lean();
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-4">Registrations for {eventDoc.title}</h1>
-      <p className="text-gray-700 mb-6">{eventDoc.description}</p>
+      <h1 className="text-3xl font-bold mb-4 text-black">Registrations for {eventDoc.title}</h1>
+      <p className="text-black mb-6">{eventDoc.description}</p>
 
       {registrations.length === 0 ? (
-        <p className="text-gray-500">No visitors have registered yet.</p>
+        <p className="text-black">No visitors have registered yet.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white rounded-lg shadow">
-            <thead className="bg-gray-200">
+          <table className="min-w-full bg-white rounded-lg shadow text-black">
+            <thead className="bg-gray-200 text-black">
               <tr>
-                <th className="px-4 py-2 text-left">Full Name</th>
-                <th className="px-4 py-2 text-left">Gender</th>
-                <th className="px-4 py-2 text-left">Age</th>
-                <th className="px-4 py-2 text-left">Occupation</th>
-                <th className="px-4 py-2 text-left">District</th>
-                <th className="px-4 py-2 text-left">Region</th>
-                <th className="px-4 py-2 text-left">Urban</th>
-                <th className="px-4 py-2 text-left">Ticket Type</th>
-                <th className="px-4 py-2 text-left">Ticket Price</th>
-                <th className="px-4 py-2 text-left">Will Attend</th>
+                <th className="px-4 py-2 text-left text-black">Full Name</th>
+                <th className="px-4 py-2 text-left text-black">Gender</th>
+                <th className="px-4 py-2 text-left text-black">Age</th>
+                <th className="px-4 py-2 text-left text-black">Occupation</th>
+                <th className="px-4 py-2 text-left text-black">District</th>
+                    {/* <th className="px-4 py-2 text-left text-black">Region</th> */}
+                <th className="px-4 py-2 text-left text-black">Urban</th>
+                {/* <th className="px-4 py-2 text-left text-black">Ticket Type</th> */}
+                {/* <th className="px-4 py-2 text-left text-black">Ticket Price</th> */}
+                <th className="px-4 py-2 text-left text-black">Will Attend</th>
                 {/* Add more fields as needed */}
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-black">
               {registrations.map((r: any) => (
-                <tr key={r._id} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-2">{r.full_name}</td>
-                  <td className="px-4 py-2">{r.gender}</td>
-                  <td className="px-4 py-2">{r.age}</td>
-                  <td className="px-4 py-2">{r.occupation}</td>
-                  <td className="px-4 py-2">{r.district}</td>
-                  <td className="px-4 py-2">{r.region}</td>
-                  <td className="px-4 py-2">{r.urban ? "Yes" : "No"}</td>
-                  <td className="px-4 py-2">{r.ticket_type}</td>
-                  <td className="px-4 py-2">{r.ticket_price}</td>
-                  <td className="px-4 py-2">{r.will_attend ? "Yes" : "No"}</td>
+                <tr key={r._id} className="border-b hover:bg-gray-50 text-black">
+                  <td className="px-4 py-2 text-black">{r.full_name}</td>
+                  <td className="px-4 py-2 text-black">{r.gender}</td>
+                  <td className="px-4 py-2 text-black">{r.age}</td>
+                  <td className="px-4 py-2 text-black">{r.occupation}</td>
+                  <td className="px-4 py-2 text-black">{r.district}</td>
+                {/*  <td className="px-4 py-2 text-black">{r.region}</td> */}
+                  <td className="px-4 py-2 text-black">{r.urban ? "Yes" : "No"}</td>
+                       {/*  <td className="px-4 py-2 text-black">{r.ticket_type}</td>     */} 
+                      {/*  <td className="px-4 py-2 text-black">{r.ticket_price}</td> */}
+                  <td className="px-4 py-2 text-black">{r.will_attend ? "Yes" : "No"}</td>
                 </tr>
               ))}
             </tbody>

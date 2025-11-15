@@ -21,6 +21,7 @@ const registrationSchema = new Schema(
     reminder_response: String,
     transportation: String,
     will_attend: Boolean,
+    imageUrl: String,
   },
   { timestamps: true }
 );

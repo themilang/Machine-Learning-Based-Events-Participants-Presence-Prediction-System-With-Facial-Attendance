@@ -28,24 +28,24 @@ export default async function DashboardRegistrations() {
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Registrations Dashboard</h1>
+      <h1 className="text-3xl font-bold mb-6 text-black">Registrations Dashboard</h1>
 
       {/* Dashboard summary */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
         <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-gray-500">Total Events</h2>
-          <p className="text-2xl font-bold">{eventsPlain.length}</p>
+          <h2 className="text-black">Total Events</h2>
+          <p className="text-2xl font-bold text-black">{eventsPlain.length}</p>
         </div>
 
         <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-gray-500">Total Registrations</h2>
-          <p className="text-2xl font-bold">{totalRegistrations}</p>
+          <h2 className="text-black">Total Registrations</h2>
+          <p className="text-2xl font-bold text-black">{totalRegistrations}</p>
         </div>
 
         {/* Example: Average registration per event */}
         <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-gray-500">Avg Registrations/Event</h2>
-          <p className="text-2xl font-bold">
+          <h2 className="text-black">Avg Registrations/Event</h2>
+          <p className="text-2xl font-bold text-black">
             {eventsPlain.length > 0
               ? Math.round(totalRegistrations / eventsPlain.length)
               : 0}
@@ -54,13 +54,13 @@ export default async function DashboardRegistrations() {
 
         {/* Example: Event with most registrations */}
         <div className="bg-white p-4 rounded-xl shadow">
-          <h2 className="text-gray-500">Top Event Registrations</h2>
+          <h2 className="text-black">Top Event Registrations</h2>
           {(() => {
             const topEventRegistrations =
               eventsPlain.length > 0
                 ? Math.max(...Object.values(registrationsPerEvent).map(v => Number(v)))
                 : 0;
-            return <p className="text-2xl font-bold">{topEventRegistrations}</p>;
+            return <p className="text-2xl font-bold text-black">{topEventRegistrations}</p>;
           })()}
         </div>
       </div>
@@ -69,14 +69,14 @@ export default async function DashboardRegistrations() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {eventsPlain.map((event: any) => (
           <div key={event._id} className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold mb-2">{event.title}</h2>
-            <p className="text-gray-700 mb-2">{event.description}</p>
-            <p className="text-gray-500 mb-4">
-              <strong>Date:</strong> {event.date ? new Date(event.date).toLocaleDateString() : "-"} |{" "}
-              <strong>Venue:</strong> {event.venue || "-"}
+            <h2 className="text-xl font-semibold mb-2 text-black">{event.title}</h2>
+            <p className="text-black mb-2">{event.description}</p>
+            <p className="text-black mb-4">
+              <strong className="text-black">Date:</strong> <span className="text-black">{event.date ? new Date(event.date).toLocaleDateString() : "-"}</span> |{" "}
+              <strong className="text-black">Venue:</strong> <span className="text-black">{event.venue || "-"}</span>
             </p>
-            <p className="text-gray-600 mb-2">
-              <strong>Registrations:</strong> {registrationsPerEvent[event._id] || 0}
+            <p className="text-black mb-2">
+              <strong className="text-black">Registrations:</strong> <span className="text-black">{registrationsPerEvent[event._id] || 0}</span>
             </p>
             <Link
               href={`/dashboard/registrations/${event._id}`}
