@@ -9,7 +9,7 @@ const registrationSchema = new Schema(
     occupation: String,
     district: String,
     region: String,
-    urban: Boolean,
+    urban: String,
     past_events_registered: Number,
     past_events_attended: Number,
     last_event_attended: Date,
@@ -22,6 +22,13 @@ const registrationSchema = new Schema(
     transportation: String,
     will_attend: Boolean,
     imageUrl: String,
+    location_closeness: String, 
+    category: String,
+    Past_Participant:String,
+    Event_Relevance:String,
+    predicted_attend: Boolean,
+    probability_present: Number,
+    probability_absent: Number,
   },
   { timestamps: true }
 );

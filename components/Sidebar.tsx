@@ -57,6 +57,12 @@ const Sidebar = () => {
           >
            Overview
           </Link>
+           <Link
+            href="/dashboard/predict_registered(db)"
+            className="hover:bg-gray-700 p-2 rounded"
+          >
+          predict_registered(db)
+          </Link>
         </nav>
       </div>
 

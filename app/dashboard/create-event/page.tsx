@@ -143,12 +143,16 @@ export default function CreateEventPage() {
                   className="w-full p-4 border border-gray-300 rounded-2xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 shadow-sm"
                 >
                   <option value="">Select Category</option>
-                  <option value="Conference">Conference</option>
-                  <option value="Workshop">Workshop</option>
-                  <option value="Seminar">Seminar</option>
-                  <option value="Webinar">Webinar</option>
-                  <option value="Meetup">Meetup</option>
-                  <option value="Other">Other</option>
+                  <option value="Business">Business</option>
+                  <option value="General">General</option>
+                  <option value="Educational">Educational</option>
+                  <option value="NGOS">NGOS</option>
+                  <option value="Cultural/Traditional">Cultural/Traditional</option>
+                  <option value="Tech">Tech</option>
+                  <option value="Politics">Politics</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Training">Training</option>
+                  <option value="Entertainment">Entertainment</option>
                 </select>
               </div>
 

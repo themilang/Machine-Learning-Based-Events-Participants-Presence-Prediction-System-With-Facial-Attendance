@@ -387,7 +387,8 @@ export default function ClientEventForm({ event }: Props) {
     age: 0,
     occupation: "",
     district: "",
-    urban: false,
+    urban: "",
+    Past_Participant: "",
     // past_events_registered: 0,
     // past_events_attended: 0,
     // last_event_attended: "",
@@ -475,6 +476,7 @@ if (result.secure_url) {
       ...formData,
 //      last_event_attended: formData.last_event_attended ? new Date(formData.last_event_attended) : null,
       eventId: event._id,
+      category: event.category || "-",
     };
 
     try {
@@ -598,6 +600,21 @@ if (result.secure_url) {
           </select>
         </div>
 
+        {/* Past Participant */}
+        <div className="flex flex-col">
+          <label>Past Participant</label>
+          <select
+            name="Past_Participant"
+            value={formData.Past_Participant}
+            onChange={handleChange}
+            className="border p-2 rounded"
+          >
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
 
         {/* Reminder Response */}
         {/* <div className="flex flex-col">
@@ -630,9 +647,54 @@ if (result.secure_url) {
             <option value="Cycle">Cycle</option>
           </select>
         </div>
+        
+
+
+  {/* urban dropdown */}
+        <div className="flex flex-col">
+          <label>Area of Living </label>
+          <select
+            name="urban"
+            value={formData.urban}
+            onChange={handleChange}
+            className="border p-2 rounded"
+          >
+            <option value="">Select Area of Living</option>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>
+            
+          </select>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* Checkbox Inputs */}
-        {["urban", "will_attend"].map((field) => (
+        {/* {["urban", "will_attend"].map((field) => (
           <div key={field} className="flex items-center gap-2">
             <label className="capitalize">{field.replace("_", " ")}</label>
             <input
@@ -642,7 +704,7 @@ if (result.secure_url) {
               onChange={handleChange}
             />
           </div>
-        ))}
+        ))} */}
 
         {/* Location Closeness Dropdown */}
         <div className="flex flex-col">
@@ -654,9 +716,9 @@ if (result.secure_url) {
             className="border p-2 rounded"
           >
             <option value="">Select</option>
-            <option value="near">Near</option>
-            <option value="medium">Medium</option>
-            <option value="far">Far</option>
+            <option value="Near">Near</option>
+            <option value="Medium">Medium</option>
+            <option value="Far">Far</option>
           </select>
         </div>
 
